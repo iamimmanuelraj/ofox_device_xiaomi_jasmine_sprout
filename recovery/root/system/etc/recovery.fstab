@@ -1,0 +1,17 @@
+# Android fstab file for OrangeFox on jasmine_sprout.
+# Mirrors the LineageOS 23.2 ROM fstab (device rootdir/etc/fstab.qcom).
+# <src>                                  <mnt_point>   <type>  <mnt_flags>                                     <fs_mgr_flags>
+system                                   /system       erofs   ro                                              wait,slotselect,logical,first_stage_mount
+system                                   /system       ext4    ro,barrier=1                                    wait,slotselect,logical,first_stage_mount
+vendor                                   /vendor       erofs   ro                                              wait,slotselect,logical,first_stage_mount
+vendor                                   /vendor       ext4    ro,barrier=1                                    wait,slotselect,logical,first_stage_mount
+product                                  /product      erofs   ro                                              wait,slotselect,logical,first_stage_mount
+product                                  /product      ext4    ro,barrier=1                                    wait,slotselect,logical,first_stage_mount
+system_ext                               /system_ext   erofs   ro                                              wait,slotselect,logical,first_stage_mount
+system_ext                               /system_ext   ext4    ro,barrier=1                                    wait,slotselect,logical,first_stage_mount
+odm                                      /odm          erofs   ro                                              wait,slotselect,logical,first_stage_mount
+odm                                      /odm          ext4    ro,barrier=1                                    wait,slotselect,logical,first_stage_mount
+/dev/block/bootdevice/by-name/userdata   /data         f2fs    nosuid,nodev,noatime,fsync_mode=nobarrier,lazytime,background_gc=sync,gc_merge,atgc,checkpoint_merge,inlinecrypt   wait,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,metadata_encryption=aes-256-xts,latemount,check,formattable,reservedsize=128M,checkpoint=fs,fsverity
+/dev/block/by-name/logdump               /metadata     ext4    noatime,nosuid,nodev,data=journal,commit=1      wait,check,formattable,first_stage_mount
+/dev/block/bootdevice/by-name/boot       /boot         emmc    defaults                                        slotselect
+/dev/block/bootdevice/by-name/misc       /misc         emmc    defaults                                        defaults

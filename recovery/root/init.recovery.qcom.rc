@@ -1,0 +1,23 @@
+# OrangeFox init for jasmine_sprout (SDM660)
+
+import /init.recovery.qcom_decrypt.rc
+
+on init
+    setprop sys.usb.configfs 1
+
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
+
+on property:ro.boot.usbcontroller=*
+    setprop sys.usb.controller ${ro.boot.usbcontroller}
+    wait /sys/class/udc/${ro.boot.usbcontroller} 1
+
+on boot
+    # adb as early as possible (logs even if the GUI or decryption stalls)
+    setprop sys.usb.config adb
+
+    # Torch LEDs for the OrangeFox flashlight
+    chmod 0666 /sys/class/leds/led:torch_0/brightness
+    chmod 0666 /sys/class/leds/led:switch_0/brightness

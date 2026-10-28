@@ -1,0 +1,18 @@
+# OrangeFox/TWRP-only partitions (backup, flash, mount). Real mounts come from recovery.fstab.
+/boot            emmc   /dev/block/bootdevice/by-name/boot       flags=slotselect;backup=1;flashimg=1;display="Boot"
+/system_image    emmc   /dev/block/bootdevice/by-name/system     flags=slotselect;backup=1;flashimg=1;display="Super (system)"
+/vendor_image    emmc   /dev/block/bootdevice/by-name/vendor     flags=slotselect;backup=1;flashimg=1;display="Super (vendor)"
+/vbmeta          emmc   /dev/block/bootdevice/by-name/vbmeta     flags=slotselect;backup=1;flashimg=1;display="VBMeta"
+/splash          emmc   /dev/block/bootdevice/by-name/splash     flags=backup=1;flashimg=1;display="Boot Logo"
+/persist         ext4   /dev/block/bootdevice/by-name/persist    flags=backup=1;display="Persist"
+/persist_image   emmc   /dev/block/bootdevice/by-name/persist    flags=backup=1;flashimg=1;display="Persist Image"
+/metadata        ext4   /dev/block/by-name/logdump               flags=backup=1;display="Metadata"
+/modem           emmc   /dev/block/bootdevice/by-name/modem      flags=slotselect;backup=1;flashimg=1;display="Modem"
+/firmware        vfat   /dev/block/bootdevice/by-name/modem      flags=slotselect;mounttodecrypt;display="Firmware";fsflags=ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0
+/bt_firmware     vfat   /dev/block/bootdevice/by-name/bluetooth  flags=slotselect;backup=1;display="Bluetooth"
+/dsp             ext4   /dev/block/bootdevice/by-name/dsp        flags=slotselect;backup=1;display="DSP"
+/efs1            emmc   /dev/block/bootdevice/by-name/modemst1   flags=backup=1;flashimg=1;display="EFS"
+/efs2            emmc   /dev/block/bootdevice/by-name/modemst2   flags=backup=1;subpartitionof=/efs1
+/efsc            emmc   /dev/block/bootdevice/by-name/fsc        flags=backup=1;subpartitionof=/efs1
+/efsg            emmc   /dev/block/bootdevice/by-name/fsg        flags=backup=1;subpartitionof=/efs1
+/usb_otg         auto   /dev/block/sda1  /dev/block/sda          flags=removable;storage;wipeingui;display="USB OTG"

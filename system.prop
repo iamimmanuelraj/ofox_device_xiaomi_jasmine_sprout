@@ -1,0 +1,9 @@
+# Product
+ro.display.series=Xiaomi Mi A2
+ro.product.board=sdm660
+ro.board.platform=sdm660
+
+# USB
+sys.usb.controller=a800000.dwc3
+sys.usb.rndis.func.name=rndis_bam
+sys.usb.rmnet.func.name=rmnet_bam
