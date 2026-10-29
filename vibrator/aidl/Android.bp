@@ -1,0 +1,54 @@
+Common_CFlags = ["-Wall"]
+Common_CFlags += ["-Werror"]
+// device/ is not on the -Werror allowlist like vendor/qcom: VibratorOL/Vibrator.cpp getSupportedEffects() has an over-indented block (harmless)
+Common_CFlags += ["-Wno-misleading-indentation"]
+
+cc_library_shared {
+    name: "vendor.qti.hardware.vibrator.impl",
+    vendor: true,
+    cflags: Common_CFlags + select(soong_config_variable("qti_vibrator", "use_libpalclient"), {
+        true: ["-DUSE_LIBPALCLIENT"],
+        default: [],
+    }),
+    srcs: [
+        "Vibrator.cpp",
+    ],
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libbinder_ndk",
+        "android.hardware.vibrator-V2-ndk",
+        "vendor.qti.hardware.vibratorOL.impl",
+        "vendor.qti.hardware.vibratorSel.impl",
+    ] + select(soong_config_variable("qti_vibrator", "use_libpalclient"), {
+        true: ["vendor.qti.hardware.vibratorCL.impl"],
+        default: [],
+    }),
+    export_include_dirs: ["include"],
+    include_dirs: [
+        "external/expat/lib",
+    ]
+}
+
+cc_binary {
+    name: "vendor.qti.hardware.vibrator.service",
+    vendor: true,
+    relative_install_path: "hw",
+    init_rc: ["vendor.qti.hardware.vibrator.service.rc"],
+    vintf_fragments: [
+        "vendor.qti.hardware.vibrator.service.xml",
+    ],
+    cflags: Common_CFlags,
+    srcs: [
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "libbase",
+        "libbinder_ndk",
+        "android.hardware.vibrator-V2-ndk",
+        "vendor.qti.hardware.vibrator.impl",
+    ],
+}

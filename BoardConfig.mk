@@ -159,6 +159,19 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.boot@1.1.so
 
+# Vibration: the ROM's QTI AIDL vibrator HAL (built from vibrator/, see vibrator/SOURCE),
+# driving the qti-haptics input device; started by init.recovery.qcom.rc
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+TARGET_RECOVERY_DEVICE_MODULES += vendor.qti.hardware.vibrator.service
+RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/vendor.qti.hardware.vibrator.service
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.qti.hardware.vibrator.impl.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.qti.hardware.vibratorOL.impl.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.qti.hardware.vibratorSel.impl.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libqtivibratoreffect.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libqtivibratoreffectoffload.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libexpat.so
+
 # OrangeFox
 OF_MAINTAINER := iamimmanuelraj
 OF_SCREEN_H := 2160

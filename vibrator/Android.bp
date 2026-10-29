@@ -1,0 +1,5 @@
+// QTI AIDL vibrator HAL for the recovery: LineageOS android_vendor_qcom_opensource_vibrator
+// @ ff107c42acda49f0609c30e155d1dd9d17b814b9 (lineage-23.2, the revision the 20261028 ROM pins),
+// fuzzer dropped. See SOURCE.
+soong_namespace {
+}

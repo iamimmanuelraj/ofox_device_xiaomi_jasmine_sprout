@@ -25,7 +25,8 @@ PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    $(LOCAL_PATH)/bootctrl
+    $(LOCAL_PATH)/bootctrl \
+    $(LOCAL_PATH)/vibrator
 
 # Boot control (same QTI AIDL HAL as the ROM, see bootctrl/SOURCE)
 PRODUCT_PACKAGES += \

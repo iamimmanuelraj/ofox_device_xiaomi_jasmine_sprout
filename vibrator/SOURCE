@@ -1,0 +1,2 @@
+LineageOS/android_vendor_qcom_opensource_vibrator ff107c42acda49f0609c30e155d1dd9d17b814b9 (lineage-23.2); aidl/ + effect/ only, cc_fuzz removed
+Build fix: -Wno-misleading-indentation in aidl/Android.bp (the ROM tree builds it under vendor/qcom, where warnings are allowed)

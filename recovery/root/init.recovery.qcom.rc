@@ -18,6 +18,15 @@ on boot
     # adb as early as possible (logs even if the GUI or decryption stalls)
     setprop sys.usb.config adb
 
+    start vendor.qti.vibrator
+
     # Torch LEDs for the OrangeFox flashlight
     chmod 0666 /sys/class/leds/led:torch_0/brightness
     chmod 0666 /sys/class/leds/led:switch_0/brightness
+
+# QTI AIDL vibrator HAL (qti-haptics input device), used by OrangeFox for haptics
+service vendor.qti.vibrator /system/bin/vendor.qti.hardware.vibrator.service
+    user system
+    group system input
+    disabled
+    seclabel u:r:recovery:s0
