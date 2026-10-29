@@ -18,6 +18,14 @@ on boot
     # adb as early as possible (logs even if the GUI or decryption stalls)
     setprop sys.usb.config adb
 
+    # Notification LED (white, on the "red" channel like the ROM's lights HAL):
+    # lit while a charger is connected, by the kernel's power-supply trigger.
+    # OrangeFox's DataManager::Leds() writes brightness 0 on most page changes, which
+    # detaches the trigger; it does nothing when leds/green is missing, so hide the
+    # (unconnected) green channel.
+    mount tmpfs none /sys/class/leds/green ro size=0
+    write /sys/class/leds/red/trigger battery-charging-or-full
+
     start vendor.qti.vibrator
 
     # Torch LEDs for the OrangeFox flashlight
