@@ -9,4 +9,8 @@
         <transport>hwbinder</transport>
         <fqname>@3.0::IKeymasterDevice/default</fqname>
     </hal>
+    <hal format="aidl">
+        <name>android.hardware.boot</name>
+        <fqname>IBootControl/default</fqname>
+    </hal>
 </manifest>

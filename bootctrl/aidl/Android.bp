@@ -31,7 +31,6 @@ cc_defaults {
         "libboot_control_defaults",
         "libboot_control_qti_defaults",
     ],
-    vintf_fragments: [":boot-service.qti.xml"],
     shared_libs: [
         "libbase",
         "libbinder_ndk",
